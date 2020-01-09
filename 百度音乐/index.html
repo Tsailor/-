@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .wrap {
+            width:500px;
+            margin: auto;
+            border: 1px solid black;
+            background-color: #eee;
+            overflow: hidden
+        }
+        h2{
+            text-align: center;
+            font-size: 18px;
+        }
+        a {
+            cursor: pointer;
+            color: rgb(21, 21, 209);
+            margin: 0 5px;
+        }
+        li {
+            padding:5px 10px; 
+            list-style: none;
+            border-top:1px solid black; 
+        }
+        footer {
+            border-top: 1px solid black;
+            padding-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrap">
+        <h2>百度音乐榜单</h2>
+        <ul id="listPanel">
+            <!-- <li>
+                <input type="checkbox"/>
+                <span>余光的虽有</span>
+                <a>收藏</a>
+                <a>取消收藏</a>
+                <a>删除</a>
+            </li> -->
+        </ul>
+        <footer>
+            <input type="checkbox" id="checkAll"/>
+            <span>全选/取消全选</span>
+            <a id="removeItems">删除</a>
+            <input tyoe="text" id="newInfo"/>
+            <a id="addItem">添加</a>
+        </footer>
+    </div>
+<script>
+        let data = [
+            {
+            id: 0,
+            title: "残酷月光 - 费启鸣",
+            checked: true,
+            collect: true
+            }, {
+            id: 1,
+            title: "兄弟 - 艾热",
+            checked: false,
+            collect: false
+            }, {
+            id: 2,
+            title: "毕生 - 夏增祥",
+            checked: false,
+            collect: true
+            }, {
+            id: 3,
+            title: "公子向北去 - 李春花",
+            checked: false,
+            collect: false
+            }, {
+            id: 4,
+            title: "战场 - 沙漠五子",
+            checked: true,
+            collect: false //是否收藏 true 收藏 false 没有收藏
+            }
+        ];
+        let listPanel=document.querySelector("#listPanel");
+        let checkAll=document.querySelector("#checkAll");
+      
+        
+        function render(data){
+            let str="";
+            data.forEach(v=> {
+                str+=`
+                <li>
+                    <input type="checkbox" ${v.checked ? 'checked' : ""}/>
+                    <span>${v.title}</span>
+                    ${v.collect ?' <a id="cancelCollect">取消收藏</a>' :'<a id="collect">收藏</a>'}
+                    <a id="remove">删除</a>
+                </li>
+                `
+            });
+            listPanel.innerHTML=str;
+            
+            // 全部选中 后全选标志√
+            let isCheckedAll = data.every((v)=>v.checked===true);
+            checkAll.checked=isCheckedAll;
+
+            addEvent();    //  重新渲染视图，也要重新绑定事件
+        }
+        render(data)
+ 
+       
+        function addEvent(){
+            let list = Array.from(document.querySelectorAll("li"));
+            //选中事件
+            list.forEach((v,k)=>{
+                
+                //  选择事件
+                let checkItem=v.querySelector('input');
+                checkItem.onchange=function(){
+                    console.log("点击了选择")
+                    data[k].checked=this.checked;
+                   // console.log(data)
+                    render(data)   //修改数据，渲染视图
+                }
+
+                //删除
+                let removeItem=v.querySelector("#remove");
+                removeItem.onclick=function(){
+                    console.log("点击了删除");
+                    data.splice(k,1);
+
+                    render(data);
+                }
+
+                // 取消收藏
+                let cancelCollect= v.querySelector("#cancelCollect");
+                cancelCollect&&(cancelCollect.onclick=function(){
+                    data[k].collect=false;
+
+                    render(data);
+                })
+
+                // 收藏
+                let collect=v.querySelector("#collect");
+                collect && ( collect.onclick = function(){
+                    data[k].collect=true;
+                    
+                    render(data);
+                })
+            }
+            )
+
+
+            // 全选/取消全选
+            checkAll.onchange=function( ){
+                data.forEach((val)=>{
+                    val.checked=this.checked;
+                })
+                render(data);
+            }
+                
+            //  指定删除
+            let removeItems = document.querySelector("#removeItems");
+            removeItems.onclick=function(){
+                data= data.filter((v)=> v.checked!==true);
+
+                render(data);
+            }
+            
+            //添加
+            let addItem= document.querySelector("#addItem")
+            addItem.onclick=function(){
+                let inputNode = document.querySelector("#newInfo");
+                let newInfo=inputNode.value;
+                let id= data.length===0 ? 1 :data[data.length-1].id+1
+                !newInfo ? null : data.push({
+                    id: id,
+                    title: newInfo,
+                    checked: false,
+                    collect: false //是否收藏 true 收藏 false 没有收藏
+                })
+                 render(data);
+          //console.log(data)
+                inputNode.value = "";
+            }
+        }
+</script>
+</body>
+</html>
