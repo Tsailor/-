@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax测试用例</title>
+</head>
+<body>
+<input type="text" id="num">
+<button id="search">查询</button>
+<p id="result"></p>
+<script type="text/javascript">
+    document.getElementById("search").onclick=function () {
+        var _num=document.getElementById("num").value;
+        var http_request;
+        if(window.XMLHttpRequest){
+            http_request=new XMLHttpRequest();
+        }else {
+            http_request=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        http_request.open("GET","index.php?number="+_num,true);
+        http_request.send();
+        
+        http_request.onreadystatechange=function () {
+            if(http_request.readyState===4&&http_request.status===200){
+                document.getElementById("result").innerHTML=http_request.responseText;
+            }else {
+                console.log("错误"+http_request.status);
+            }
+        }
+    }
+</script>
+</body>
+</html>
