@@ -1,0 +1,17 @@
+* {
+    margin: 0;
+    pad: 0;
+}
+body {
+    width:80%;
+    margin: auto;
+}
+h1 ,p {
+    text-align: center;
+}
+#mainDiv {
+    display: none;
+}
+#longinPanel {
+    margin: 20px 0;
+}
