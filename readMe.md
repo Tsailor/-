@@ -13,3 +13,6 @@ AJAX的使用，包括原生js与jquery、json（jsonp）
 功能：收藏/取消收藏、添加/删除
 以数据驱动视图，包括原生JS与ES6数组的使用，函数式编程基础
 ![](./百度音乐/demo.png)
+  
+4、import与export实例  
+模块化思想，es6类
