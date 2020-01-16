@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <button class="btn">点击打开一个弹窗</button>
+
+    <script src="./dialog.js"></script>
+    <script>
+        let mydialog = new Dialog({   //  配置项
+            width: "40%",
+            title: "测试标题111",
+            maskable: true,
+            isCancel: true,
+            dragable: true,
+            cancel() {
+                console.log("点击取消了..");
+            },
+            sucess() {
+                console.log("点击了确定...");
+            }
+        });
+     //   var div=document.querySelector(".btn");
+      //  console.log(div);
+        document.querySelector(".btn").onclick = function () {
+           mydialog.open();
+        }
+    </script>
+</body>
+</html>

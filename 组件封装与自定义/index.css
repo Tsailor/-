@@ -1,0 +1,70 @@
+
+.dialog-wrap {
+    position: fixed;
+    background-color: rgb(83, 81, 81);
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0.4;
+    z-index: 2000;
+}
+.dialog-box {
+    position: absolute;
+    top:15%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    z-index: 2001;
+    background-color: white;
+    border-radius: 5px;
+}
+.box-header {
+    margin:10px;
+    height: 30px;
+}
+.box-title {
+    float:left;
+}
+.box-close {
+    float: right;
+    cursor: pointer;
+}
+.box-body {
+    margin:10px;
+}
+.box-footer {
+    margin: 20px;
+    float: right;
+}
+.box-footer button {
+    height: 30px;
+    width: 50px;
+    border-radius: 4px;
+}
+.dialog-remove {
+    border: 1px solid #dcdfe6;
+    text-align: center;
+    cursor: pointer;
+    padding: 0px 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    font-weight: 500;
+    color: black;
+    margin-left: 10px;
+} 
+.dialog-sure {
+    border: 1px solid #dcdfe6;
+    text-align: center;
+    cursor: pointer;
+    padding: 0px 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    font-weight: 500;
+    background: #409eff;
+    color: #fff;
+    margin-left: 10px;
+}
+.text{
+
+}
