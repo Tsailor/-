@@ -2,12 +2,11 @@ export default class Dialog {
     constructor(opts){
         this.options=Object.assign({    //浅拷贝 合并配置
             width: "30%",
-            height: "150px",
             title: "测试标题",
             content: "测试内容",
             dragable: true, //是否可拖拽
             maskable: true, //是否有遮罩
-            isCancel:false, //是否有取消
+            isCancel: true, //是否有取消
             cancel(){},
             sucess(){}
         },opts);
@@ -30,8 +29,9 @@ export default class Dialog {
                     this.options.cancel();
                     break;
                 case "dialog-sure" :
+                    this.makeSure();
                     this.close();
-                    this.options.sucess();
+                   // this.options.sucess();
                     break;
                 default :
                     console.log("未选择...");
@@ -40,6 +40,10 @@ export default class Dialog {
         }
 
         this.drag();
+    }
+    makeSure(value){
+        this.options.sucess(value);
+        console.log(value)
     }
     close(){
         this.mainDiv.style.display= "none";
@@ -55,7 +59,7 @@ export default class Dialog {
                     <span class="box-close">X</span>
                 </div>
                 <div class="box-body">
-                    ${this.options.content}
+                    <span>${this.options.content}<span>
                 </div>
                 <div class="box-footer">
                     ${this.options.isCancel ? '<button class="dialog-remove">取消</button>' : ""}
@@ -70,7 +74,6 @@ export default class Dialog {
         document.querySelector("body").insertBefore(this.mainDiv,scriptEle);
         let dialog=this.mainDiv.querySelector(".dialog-box");
         dialog.style.width=this.options.width;
-        dialog.style.height=this.options.height;
         this.mainDiv.style.display="none";
     }
     open(){

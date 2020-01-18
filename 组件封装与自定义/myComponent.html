@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <myComponent></myComponent> -->
+    <!-- <img is="my-img" src="#" alt="" /> -->
+    <my-component
+        width="40%"
+    ></my-component
+        >
+</body>
+<script>
+// 继承html组件
+// class MyImg extends HTMLImageElement{
+//     constructor(){
+//         super();
+//         console.log(this);
+//         setTimeout(() => {
+//             this.src = "http://a3.att.hudong.com/35/34/19300001295750130986345801104.jpg";
+//         }, 2000);
+//     }
+// }
+// customElements.define("my-img",MyImg,{
+//     extends:"img"
+// })
+
+// 自定义组件
+class MyComponent extends HTMLElement{
+    constructor(){
+        super();
+        console.log(this.attributes.width);
+        this.innerHTML = `自定义组件里的内容`;
+    }
+}
+customElements.define("my-component",MyComponent);
+
+
+</script>
+</html>

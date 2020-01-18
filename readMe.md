@@ -15,4 +15,8 @@ AJAX的使用，包括原生js与jquery、json（jsonp）
 ![](./百度音乐/demo.png)
   
 4、import与export实例  
-模块化思想，es6类
+模块化思想，es6类  
+  
+5、组件的封装与自定义组件  
+功能：打开一个弹窗。使用自定义组件。
+ES6 class的使用与继承。 
