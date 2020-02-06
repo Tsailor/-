@@ -37,6 +37,7 @@ class MusicList extends Component{
             isCheckeddAll:"",
             inputValue:""
         }
+       
         this.chooseAll=this.chooseAll.bind(this);    //   全选
         this.handleChange=this.handleChange.bind(this);   // 输入框输入
         this.choose=this.choose.bind(this);      //   选择单个

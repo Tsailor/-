@@ -1,11 +1,11 @@
-import React ,{useContext} from "react";
+import React ,{useContext, useReducer} from "react";
 import MusicList from "./musiclist.js";
-// import Manager from "./manager.js";
+import Manager from "./manager.js";
 import MusicListContext from "./musiclistContext.js"
 import "./index.css";
 function AppContainer() {
- 
-    let list = [
+      //  所有数据
+    let data = [
         {
             id: 0,
             title: "残酷月光 - 费启鸣",
@@ -33,11 +33,18 @@ function AppContainer() {
             collect: false //是否收藏 true 收藏 false 没有收藏
         }
     ];
+    const reducer = (state,action)=>{
+        switch(action.type){
+               
+        }
+    }
+
+    const [ state ,dispatch ] = useReducer(reducer , data);
     return (
-        <MusicListContext.Provider value={{ data: list }}>
+        <MusicListContext.Provider value={{ data,dispatch }}>
             <div className="container">
                 <MusicList />
-                {/* <Manager /> */}
+                <Manager />
             </div>
         </MusicListContext.Provider>
     )
