@@ -27,4 +27,8 @@ React实现、ES6 Class、函数式编程基础
   
 7、百度音乐操作（React HooKs实现）
 功能：收藏/取消收藏、添加/删除
-学习使用react hooks、React Hooks实现、函数式编程基础
+学习使用react hooks、React Hooks实现、函数式编程基础  
+   
+8、新闻列表(Node.js实现)  
+功能：新闻页、详情页、页码跳转  
+学习使用Node.js核心模块，服务端渲染  
