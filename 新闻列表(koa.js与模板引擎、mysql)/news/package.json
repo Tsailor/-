@@ -1,0 +1,22 @@
+{
+  "name": "news",
+  "version": "1.0.0",
+  "description": "1、静态文件注意路径，app.use(Static(_dirname+\"./static\")),由于路径static已经拼接上，模板html里css、js文件路径写static后路径即可  \r 2、ctx.url即为请求的url,通过url模块的url.parse()可得到参数。objPath.query.p为字符串类型。  \r 3、模板nunjucks里的内容好难写，参考文档https://nunjucks.bootcss.com/templating.html",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "favicon": "0.0.2",
+    "koa": "^2.11.0",
+    "koa-favicon": "^2.0.1",
+    "koa-nunjucks-2": "^3.0.2",
+    "koa-router": "^8.0.8",
+    "koa-static": "^5.0.0",
+    "koa-views": "^6.2.1",
+    "mysql2": "^2.1.0"
+  }
+}
