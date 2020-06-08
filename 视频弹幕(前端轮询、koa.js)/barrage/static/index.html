@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <title>Document</title>
+    <style>
+        video {
+            margin: 0 auto;
+        }
+
+        .barrage {
+            width: 750px;
+            height: 70px;
+            position: absolute;
+            margin-top: 10px;
+        }
+
+        .barrage span {
+            color: white;
+            position: absolute;
+            left: 0px;
+        }
+
+        .inputView {
+            position: absolute;
+            top: 400px;
+        }
+    </style>
+    <script src="./jq.js"></script>
+</head>
+
+<body>
+    <div class="barrage">
+        <div class="row">
+            <!-- <span>
+                你好
+            </span>  -->
+        </div>
+    </div>
+    <div class="inputView">
+        <input class="remarkMessage" /> <button class="btn">点击发送</button>
+    </div>
+    <video src="./HTML5的前世今生.mp4" controls></video>
+</body>
+<script>
+ 
+    // 添加弹幕；
+    let arr = [];
+    document.querySelector(".btn").onclick = function () {
+        let value = document.querySelector(".remarkMessage").value;
+        if (value !== "") {
+            $.ajax({
+                url: "/addData",
+                method: "post",
+                data: {
+                    value
+                },
+                success: res => {
+                    console.log(res);
+                }
+            })
+        }
+    }
+
+
+    setInterval(() => {       //    每隔两秒轮询请求 
+        getBarrageData();
+    }, 2000);
+
+    // 获取弹幕数据；
+    function getBarrageData() {
+        // let showEles = document.querySelectorAll(".row span");
+        //         [...showEles].forEach(node => {
+        //             // console.log(node.attributes['m-id'].value);
+        //             arr.push(node.attributes['m-id'].value);
+        //         })
+        //         // 出重；
+        //         let newSet = new Set(arr);
+        //         arr = Array.from(newSet);
+        //         console.log(arr);
+        let showEles = document.querySelectorAll(".row span");
+        Array.from(showEles).forEach(node =>{
+            arr.push(node.attributes['m-id'].value);
+        })
+        let newSet = new Set(arr);
+        arr = Array.from(newSet);
+        console.log(arr)
+        $.ajax({
+            url: "/getBarrageData",
+            success: res => {
+     //           console.log(res);          
+                queue();
+                async function queue() {
+                    for (let i = 0; i < res.length; i++) {
+                        // console.log(!arr.find(mid => mid == res[i].id),mid,);
+                        if (!arr.find(mid => mid == res[i].id)) {
+                            await new Promise(resolve => {
+                                setTimeout(() => {
+                                    resolve();
+                                    let obj = createBarrage(res[i].message, res[i].id);
+                                    barrageAnimate(obj);
+                                }, 1000)
+                            })
+                        }
+                    }
+                }
+
+
+            }
+        })
+    }
+
+    // let ele =  createBarrage("hello",1);
+    // barrageAnimate(ele);
+
+    // 根据数据创建节点；
+    function createBarrage(value, id) {
+        let span = document.createElement("span");
+        span.innerHTML = value;
+        span.setAttribute("m-id", id);
+        document.querySelector(".row").appendChild(span);
+        return span;
+    }
+    // 节点做动画
+    function barrageAnimate(obj) {
+        let newLoca = parseInt(obj.style.left) || 0;
+        newLoca++
+        if (newLoca > 680) {
+            console.log("超出屏幕");
+            // 删除节点；
+            obj.parentNode.removeChild(obj);
+        } else {
+            obj.style.left = newLoca + "px";
+            requestAnimationFrame(function () {
+                barrageAnimate(obj);
+            })
+        }
+    }
+
+
+</script>
+
+</html>
