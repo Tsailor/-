@@ -1,0 +1,13 @@
+{
+  "name": "barrage",
+  "version": "1.0.0",
+  "description": "... javascript\r const [rows,fields] = await connection.promise().query(\"INSERT INTO barrage(message) VALUES(?) \",[value]);\r ...\r 如果SQL语句没有返回值则 rows的值为\r ...javascript\r ResultSetHeader {\r   fieldCount: 0,\r   affectedRows: 1,\r   insertId: 1,\r   info: '',\r   serverStatus: 2,\r   warningStatus: 0\r }\r ...",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
