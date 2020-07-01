@@ -1,0 +1,26 @@
+body {
+    margin:0 50px;
+    background-color:pink;
+}
+
+video {
+    margin: 0 auto;
+}
+
+.barrage {
+    width: 750px;
+    height: 70px;
+    position: absolute;
+    margin-top: 10px;
+}
+
+.barrage span {
+    color: white;
+    position: absolute;
+    left: 0px;
+}
+
+.inputView {
+    position: absolute;
+    top: 400px;
+}

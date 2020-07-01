@@ -6,29 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
     <title>Document</title>
-    <style>
-        video {
-            margin: 0 auto;
-        }
-
-        .barrage {
-            width: 750px;
-            height: 70px;
-            position: absolute;
-            margin-top: 10px;
-        }
-
-        .barrage span {
-            color: white;
-            position: absolute;
-            left: 0px;
-        }
-
-        .inputView {
-            position: absolute;
-            top: 400px;
-        }
-    </style>
+    <link rel="stylesheet" href="./index.css">
     <!-- <script src="./jq.js"></script> -->
 </head>
 
@@ -43,14 +21,39 @@
     <div class="inputView">
         <input class="remarkMessage" /> <button class="btn">点击发送</button>
     </div>
-    <video src="./HTML5的前世今生.mp4" controls></video>
+    <!-- <video src="./HTML5的前世今生.mp4" controls></video> -->
+    <video src="./html.mp4" controls></video> 
 </body>
 <script>
- 
+ window.onload = function(){
     document.querySelector(".btn").onclick = function () {
         let value = document.querySelector(".remarkMessage").value;
+        sendMessage(value);
     }
 
+    function sendMessage(value){
+        let xmlHR;
+        if(window.XMLHttpRequest){
+            xmlHR = new XMLHttpRequest();
+        } else {
+            xmlHR = new ActiveXObject("Microsoft.XMLHTTP")
+        }
+        xmlHR.onreadystatechange=function()
+	   {
+		    if (xmlHR.readyState==4 && xmlHR.status==200)
+		    {
+              let result = JSON.parse(xmlHR.responseText);
+               console.log(result.message)    
+	    	}
+	    }
+        xmlHR.open("Post","/barrage",true)
+        xmlHR.setRequestHeader('Content-type', 'application/json');
+        console.log(value)
+        let data ={message :value}
+        xmlHR.send(JSON.stringify(data));
+    }
+ }
+   
 
     // setInterval(() => {       //    每隔两秒轮询请求 
     //     getBarrageData();
