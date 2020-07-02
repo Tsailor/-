@@ -11,22 +11,38 @@
 </head>
 
 <body>
-    <div class="barrage">
+    <!-- <div class="barrage">
         <div class="row">
            
         </div>
-    </div>
+    </div> -->
     <div class="inputView">
-        <input class="remarkMessage" /><button class="btn">点击发送</button> 
+        <!-- <input class="remarkMessage" /> --><button class="btn">点击发送</button> 
     </div>
     <!-- <video src="./HTML5的前世今生.mp4" controls></video> -->
-    <video src="./html.mp4" controls></video> 
+    <!-- <video src="./html.mp4" controls></video>  -->
 </body>
 <script>
   
  window.onload = function(){
 
-    let timer;       // 定时器
+    function verify(x) {
+         console.log(x)
+     }
+
+    //  function debounce(fn, wait, value) {// wait 时间内多次触发，仅执行第一次
+    //      let timer;
+    //      return function () {
+    //          let that = this;
+    //          if (timer) clearTimeout(timer);
+    //          let execTimer = !timer;
+    //          timer = setTimeout(() => {
+    //              timer = null
+    //          }, wait);
+    //          if (execTimer) fn.call(that, value)    
+    //      }
+    //  } 
+    let timer;     //  适用方式一
     function  debounce(fn, wait, value) {// wait 时间内多次触发，仅执行第一次  
         let that = this;
         if (timer) clearTimeout(timer);
@@ -36,14 +52,45 @@
         }, wait);
         if (execTimer) fn.call(that, value)    
      }
-    
+    //需求：   连续点击多次btn, 仅执行第一次，间隔1S
+    //问题：   方式二可行，方式一不行；他们的区别？问题存在原因？
+     //  方式一
      document.querySelector(".btn").addEventListener('click', function(){
-        let value = document.querySelector(".remarkMessage").value;
-        if(value){
-            debounce(sendMessage, 1000, value)
-        }
-        
+          debounce(verify, 1000, "up")
      })
+
+     // 方式二
+    //document.querySelector(".btn").addEventListener('click', debounce(verify, 1000,"up"))
+
+    //  方式三，同方式二一样可行，但是获取参数？？？
+    // document.querySelector(".btn").addEventListener('click', {
+    //     handleEvent:debounce(verify, 1000, "up")
+    // })
+ /*
+
+document.querySelector(".btn") .onclick = function () {
+        let value = document.querySelector(".remarkMessage").value;
+}
+function deBounce(fn,wait,value){
+    console.log("1")
+    let timer;
+    return function(){
+        console.log("2")
+        let that = this;
+        let  args = Array.from(arguments)
+        if(timer) clearTimeout(timer);
+        let execTimer = !timer;
+        if(execTimer)
+            fn.apply(that,args)
+        timer = setTimeout(() => {
+            time = null
+        }, wait);
+    }
+}
+*/
+
+
+/*
 
     function sendMessage(value){     // 提交数据
         let xmlHR;
@@ -66,17 +113,10 @@
         let data ={message :value}
         xmlHR.send(JSON.stringify(data));
     }
-
-    let evtSource = new EventSource('/sse'); 
-    evtSource.onopen = function(){
-        console.log("sse连接打开")
-    }  
-    evtSource.onmessage = function(event){
-        console.log(event.data);
-    }
+ 
    
 
-/*
+
 
     // 根据数据创建节点；
     function createBarrage(value, id) {
