@@ -8,10 +8,11 @@ video {
 }
 
 .barrage {
-    width: 750px;
-    height: 70px;
+    width: 672px;
+    height: 360px;
     position: absolute;
     margin-top: 10px;
+    overflow: hidden;
 }
 
 .barrage span {
@@ -23,4 +24,7 @@ video {
 .inputView {
     position: absolute;
     top: 400px;
+}
+.bar-items {
+    
 }

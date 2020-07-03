@@ -12,9 +12,9 @@
 
 <body>
     <div class="barrage">
-        <div class="row">
-           
-        </div>
+        <!-- <span class="bar-items" m-id="14">西楚霸王0001</span>
+        <span class="bar-items" m-id="13">西楚霸王0002</span>
+        <span class="bar-items" m-id="12">西楚霸王0003</span> -->
     </div>
     <div class="inputView">
         <input class="remarkMessage" /><button class="btn">点击发送</button> 
@@ -38,11 +38,12 @@
      }
     
      document.querySelector(".btn").addEventListener('click', function(){
+        
         let value = document.querySelector(".remarkMessage").value;
         if(value){
             debounce(sendMessage, 1000, value)
         }
-        
+         document.querySelector(".remarkMessage").value="";
      })
 
     function sendMessage(value){     // 提交数据
@@ -72,18 +73,61 @@
         console.log("sse连接打开")
     }  
     evtSource.onmessage = function(event){
-        console.log(event.data);
+       let data = JSON.parse(event.data).result;
+      // console.log(data)
+       renderBar(data)
+        
     }
-   
-
+    
+    function renderBar(data){
+       let barList = document.querySelectorAll(".bar-items");
+       console.log(barList)
+       let curBarIds =[];  
+       Array.from(barList).forEach((v)=>{
+           curBarIds.push(parseInt(v.getAttribute("m-id")))//  已装载的span id
+       })
+       let barDatas = data.filter((v) =>      /// 需要装载上的数据
+            curBarIds.indexOf(v.id) === -1
+        )  
+        barDatas.map((v)=>{
+            let item = createBarrage(v.message,v.id);
+            barrageAnimate(item);
+        })
+       // console.log(barDatas)
+    }
+    function createBarrage(value, id) {
+        let span = document.createElement("span");
+        span.classList.add("bar-items")
+        span.style.top = 180*(Math.random(0,1).toFixed(1))+"px";
+        span.innerHTML = value;
+        span.setAttribute("m-id", id);
+        document.querySelector(".barrage").appendChild(span);
+        return span;
+    }
+    
+    function barrageAnimate(obj) {
+        let newLoca = parseInt(obj.style.left) || 0;
+        newLoca++
+        if (newLoca > 650) {
+            console.log("超出屏幕");
+            // 删除节点；
+            obj.parentNode.removeChild(obj);
+        } else {
+            obj.style.left = newLoca + "px";
+            requestAnimationFrame(function () {
+                barrageAnimate(obj);
+            })
+        }
+    }
 /*
 
     // 根据数据创建节点；
     function createBarrage(value, id) {
         let span = document.createElement("span");
+        span.classList.add(".bar-items")
         span.innerHTML = value;
         span.setAttribute("m-id", id);
-        document.querySelector(".row").appendChild(span);
+        document.querySelector(".barrage").appendChild(span);
         return span;
     }
     // 节点做动画

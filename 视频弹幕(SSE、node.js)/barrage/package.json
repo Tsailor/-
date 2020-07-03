@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mysql": "^2.18.1"
+    "mysql2": "^2.1.0",
+    "sse": "0.0.8"
   }
 }
