@@ -1,4 +1,4 @@
-...  
+```javascript
  // 处理批量删除
     handleRemove(e){
         e.preventDefault(); //  重要！！！
@@ -7,6 +7,6 @@
         )
         this.setState({data:_data});
     }
-...  
+```
 
 如果 没有e.preventDefault(),页面会重新刷新。
