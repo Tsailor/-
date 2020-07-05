@@ -1,11 +1,15 @@
 import React from 'react'
-
+import { Button, DatePicker } from 'antd';
+// import 'antd/dist/antd.css'
+import './index.css';
 class App extends React.Component {
   render() {
     return(
       <div>
-        <h1>Hello World</h1>
+          <Button type="primary">PRESS ME</Button>
+          <DatePicker placeholder="select date" />
       </div>
+      
     )
   }
 }
