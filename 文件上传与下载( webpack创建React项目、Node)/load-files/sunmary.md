@@ -83,4 +83,17 @@ package.json中，scripts标签里加入
               }
             }
           ]
-```
+```  
+13、抽离css样式到独立的文件```javascript npm install --save-dev mini-css-extract-plugin```    
+  配置参照npm文档  
+14、你是否发现自己写的样式，比如 className = "header"这个不起作用呢？F12然后发现你写的样式被转换成这样子了 ._1ec0a3vGmXkgATKsKjsnXa？
+是的话，继续下看且搜索  ```css module```      
+```javascript  
+import style from './index.css';
+
+className={style.header}  
+```  
+OK!样式正常了。  
+15、子组件的样式，同样这样写的话 ```javascript className={style.header}```，加不上去了，怎么办？ 
+
+

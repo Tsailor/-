@@ -1,5 +1,6 @@
 const path = require('path');  //引入路径
 const HtmlWebpackPlugin = require('html-webpack-plugin')   //引入html插件
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');    //  css抽离
 module.exports = {      //  导出
     mode: 'development',
     entry: './src/index.js',    //    项目入口
@@ -32,9 +33,14 @@ module.exports = {      //  导出
           test: /\.css$/,         //  打包 .css文件
           exclude: /node_modules/,   //  除了node_modules的文件
           use: [
-            { loader: 'style-loader' },   //  将style插入到模板里
+            {  
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                esModule: true,
+              },
+            },   //  将style插入到模板里
             {
-              loader: 'css-loader',    //   解析css
+              loader: 'css-loader?modules',    //   解析css
               options: {
                 modules: true
               }
@@ -45,7 +51,12 @@ module.exports = {      //  导出
           test:/\.css$/,
           exclude:/src/,
           use:[
-              { loader: "style-loader",},
+              {  
+                loader: MiniCssExtractPlugin.loader,
+                options: {
+                  esModule: true,
+                },
+              },
               {
                   loader: "css-loader",
                   options:{
@@ -60,6 +71,7 @@ module.exports = {      //  导出
         new HtmlWebpackPlugin({
           title: 'load-files',
           template: './src/index.html'   //  模板
-        })
+        }),
+        new MiniCssExtractPlugin()
     ]
   };

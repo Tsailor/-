@@ -2,7 +2,7 @@
 仅供记录学习过程之用。  
 
 1、AJAX_materials  
-AJAX的使用，包括原生js与jquery、json（jsonp）  
+AJAX的使用，包括原生js与jquery、json（jsonp)
 
 2、员工列表  
 功能：按年龄排序，按性别筛选
@@ -47,3 +47,9 @@ React实现、ES6 Class、函数式编程基础
 功能：发送弹幕，实时接收  
 学习使用node与前端的交互与SSE技术  
 
+12、React脚手架工具+Antd配置问题  
+功能：在React项目中引入Antd ,解决了Antd的样式不生效的问题。见README.d  
+  
+13、文件上传、下载与预览   
+功能：webpack创建react项目并进行配置，引入antd，同样解决了antd样式不生效的问题。
+后续功能：文件上传、下载、预览
