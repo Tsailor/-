@@ -50,4 +50,20 @@ options:{
    ]
 } 
 ```  
-至此，antd的样式终于正常了。
+至此，antd的样式终于正常了。  
+6、你是否发现自己写的样式，比如 className = "header"这个不起作用呢？F12然后发现你写的样式被转换成这样子了 ._1ec0a3vGmXkgATKsKjsnXa？
+是的话，继续下看且搜索  ```css module```      
+```javascript  
+import style from './index.css';
+
+className={style.header}  
+```  
+OK!样式正常了。     
+7、是否有你使用一个大组件，大组件内部包裹元素时，想修改元素的样式时，不知所措？  
+F12 找出想要修改的元素，复制样式名 ,使用global能够避免被编译
+ ```css 
+ .fileinput :global(.ant-upload.ant-upload-drag){
+    width: 50%;
+    height: 100%;
+    margin: 0 auto;
+}```

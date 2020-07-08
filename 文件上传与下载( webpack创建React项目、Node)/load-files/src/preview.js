@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import style from './index.css';
+
 class Previews extends Component {
     render(){
         return(
-            <div>hello ,previews</div>
+            <div className = { style.preview }>hello ,previews</div>
         )
     }
 }

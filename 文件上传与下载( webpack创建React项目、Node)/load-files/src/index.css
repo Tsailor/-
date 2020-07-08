@@ -26,13 +26,26 @@ body {
     height: 500px;
 }
 .filepage {
-    flex-grow: 1;
+   
     width: 40%;
     height: 500px;
 }
 .preview {
-    flex-grow: 1;
+    
     width: 50%;
     height: 500px;
 }
-
+.fileinput {
+    height: 200px;
+    width: 500px;
+    margin: 0 auto;
+}
+.filelist{
+    max-height: 220px;
+    overflow-y: hidden;
+}
+body :global(.ant-upload.ant-upload-drag){
+    width: 50%;
+    height: 100%;
+    margin: 10px auto;
+}
