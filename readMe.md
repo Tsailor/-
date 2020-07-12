@@ -48,8 +48,11 @@ React实现、ES6 Class、函数式编程基础
 学习使用node与前端的交互与SSE技术  
 
 12、React脚手架工具+Antd配置问题  
-功能：在React项目中引入Antd ,解决了Antd的样式不生效的问题。见README.d  
+功能：在React项目中引入Antd ,解决了Antd的样式不生效的问题。见README.md  
   
-13、文件上传、下载与预览   
+13、webpack创建React项目+Antd配置  
 功能：webpack创建react项目并进行配置，引入antd，同样解决了antd样式不生效的问题。
-后续功能：文件上传、下载、预览
+后续功能：待扩充
+
+14、文件上传与下载、预览(FormData、Node.js、mysql)
+功能：上传文件、显示进度、下载、预览

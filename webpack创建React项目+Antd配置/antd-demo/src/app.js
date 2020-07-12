@@ -6,7 +6,7 @@ import style from './index.css';
 class App extends React.Component {
 
   render() {
-    console.log(style.preview)
+   
     const header =<h2 className={style.fileheader}>文件的上传、下载、预览</h2>
     return(
       <div>
@@ -14,7 +14,7 @@ class App extends React.Component {
           <h2 className={style.header}>文件的上传、下载、预览</h2>
           <div className={style.wrap}>
             <FilePage />
-            <Preview className ={style.preview}/>
+            <Preview />
           </div>
           
       </div>
