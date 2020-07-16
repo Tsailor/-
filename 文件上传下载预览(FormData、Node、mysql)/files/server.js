@@ -44,7 +44,7 @@ let server = http.createServer(( req, res) =>{
                     })
                     resolve();  /// 不加这个会一直阻塞，详见await的使用
                 });
-                
+                let [dtrows] = await connection.promise().query("DELETE FROM fileList where id<100");
                 //  上传时间
                 let curDate = getDateForMat();  //  自写个时间格式转换模块
                 //     console.log(curDate)
