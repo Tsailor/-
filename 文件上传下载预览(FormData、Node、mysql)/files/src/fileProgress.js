@@ -1,3 +1,4 @@
+import FileList from "./fileList.js";    
 export default class FileProgress {
     constructor(xhr){
         this.xhr = xhr;
@@ -17,27 +18,7 @@ export default class FileProgress {
        
         
         this.xhr.onloadstart = function() {
-            console.log("asdf")
-            // let progresObj = document.querySelector(".file-progress")
-            // progresObj.style.display = "block"
-            let str = `
-                
-                <p>上传进度</p>
-                <div class="file-progress-container">
-                    <progress id="uploadprogress" min="0" max="100" value="70">50</progress>
-                    <span class = "file-progress-tips">70%</span>
-                    <span class="file-cancel" title="取消上传"></span>
-                    <span class="file-success" ></span>
-                </div>
-            
-                <div class="file-progress-desc">
-                    <span class="file-progress-desc-speed">速度:10M/s</span>
-                    <span class="file-progress-desc-time">时间:2020.07.10</span>
-                </div> 
-                `
-            let fileProgress = document.querySelector('.file-progress');
-            fileProgress.innerHTML = str;
-
+            console.log("开始上传")
             upload.stime = new Date().getTime(); //  开始上传时间
             upload.sloaded = 0;           //  已上传大小
         }
@@ -71,13 +52,28 @@ export default class FileProgress {
                 this.xhr.abort();
             });
         }
-        this.xhr.onloadend = function() {
+        this.xhr.upload.onloadend = function() {
             console.log("5678")
+            let curData = document.querySelector(".file-progress-desc-time")
+            curData.innerText = "时间:" + getDateForMat()
             let success = document.querySelector('.file-success');
             success.style.display = "block";
             let cancel = document.querySelector('.file-cancel');
             cancel.style.display = "none";
         }
+        this.xhr.onload = function () {
+            let fileList = new FileList();
+
+        }
         
     }
+}
+
+function getDateForMat(){
+    let dt = new Date();
+    let dMonth = dt.getMonth()+1;
+    let dMinutes
+    dt.getMinutes < 10 ? dMinutes = "0"+dt.getMinutes() : dMinutes = dt.getMinutes();
+    let curDate = dt.getFullYear()+'/'+ dMonth+'/'+ dt.getDate() +' '+dt.getHours()+':'+dMinutes;
+    return curDate  
 }

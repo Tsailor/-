@@ -18,6 +18,7 @@ let  base = 'http://localhost:4001/';
 
 let server = http.createServer(( req, res) =>{
     let myUrl = new URL( req.url, base );
+   
     let pathName = myUrl.pathname;
     if( pathName === '/'){
         let data = fs.readFileSync('./static/index.html')
@@ -25,7 +26,7 @@ let server = http.createServer(( req, res) =>{
         res.end(data);
     }else if( pathName === '/files'){
         if(req.method === 'POST'){
-            if( !fs.existsSync(__dirname+'/my')){
+            if( !fs.existsSync(__dirname+'/my')){        // 文件夹不存在则自动创建
                fs.mkdir( __dirname+"/my", { recursive: true },(err) =>{
                    if(err) throw err;
                })   
@@ -44,7 +45,7 @@ let server = http.createServer(( req, res) =>{
                     })
                     resolve();  /// 不加这个会一直阻塞，详见await的使用
                 });
-                let [dtrows] = await connection.promise().query("DELETE FROM fileList where id<100");
+             
                 //  上传时间
                 let curDate = getDateForMat();  //  自写个时间格式转换模块
                 //     console.log(curDate)
@@ -56,7 +57,21 @@ let server = http.createServer(( req, res) =>{
                 res.end(JSON.stringify(result))
             });
         }else if(req.method === 'GET'){
-
+            let search = myUrl.search;
+            //  let serachParams = myUrl.searchParams
+            if( search === ""){
+                res.setHeader("Content-type","application/json,charset = utf8");
+                // connection.promise().query("DELETE FROM fileList where id<100")
+                connection.promise().query("SELECT * FROM fileList ORDER BY id DESC LIMIT 0,5")
+                    .then(([rows, fields]) => {
+                        console.log(rows);
+                        let resData;
+                        rows.length === 0 ? resData = { status:0,data:null} : resData = { status:1,data:rows}
+                        res.end(JSON.stringify(resData))
+                    })
+                
+            }
+           
         }
     }
     else{
