@@ -23,8 +23,8 @@ export default class FileList{
                     str += `<li class= "file-list-item">
                         <div class = "file-list-main">
                             <span class="file-item-name">${v.name}</span>
-                            <span class="file-download" title="下载到本地"></span>
-                            <span class="file-preview" title="右侧预览"></span>
+                            <span class="file-download" title="下载到本地" onClick = ${this.download}></span>
+                            <span class="file-preview" title="右侧预览" onClick = ${this.preview}></span>
                         </div>
                         <span class = "file-list-date">${v.date}</span>
                     </li>`
@@ -34,5 +34,8 @@ export default class FileList{
             }
         }
         xhr.send()
+    }
+    download(){
+        console.log("down!!")
     }
 }
