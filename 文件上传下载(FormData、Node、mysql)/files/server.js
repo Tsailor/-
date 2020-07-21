@@ -57,8 +57,9 @@ let server = http.createServer(( req, res) =>{
                 res.end(JSON.stringify(result))
             });
         }else if(req.method === 'GET'){
+            console.log(myUrl)
             let search = myUrl.search;
-            //  let serachParams = myUrl.searchParams
+            let serachParams = myUrl.searchParams
             if( search === ""){
                 res.setHeader("Content-type","application/json,charset = utf8");
                 // connection.promise().query("DELETE FROM fileList where id<100")
@@ -69,10 +70,13 @@ let server = http.createServer(( req, res) =>{
                         rows.length === 0 ? resData = { status:0,data:null} : resData = { status:1,data:rows}
                         res.end(JSON.stringify(resData))
                     })
-                
-            }
-           
-        }
+            }else{
+                let fipath = search.substr(1);
+                let fname = fipath.split("=")[1];
+                console.log(fname)
+                    res.end("hello")
+            }   
+        }   
     }
     else{
         let extName = path.extname(req.url);

@@ -54,5 +54,5 @@ React实现、ES6 Class、函数式编程基础
 功能：webpack创建react项目并进行配置，引入antd，同样解决了antd样式不生效的问题。
 后续功能：待扩充
 
-14、文件上传与下载、预览(FormData、Node.js、mysql)
-功能：上传文件、显示进度、下载、预览
+14、文件上传与下载(FormData、Node.js、mysql)  
+功能：上传文件、显示进度、下载

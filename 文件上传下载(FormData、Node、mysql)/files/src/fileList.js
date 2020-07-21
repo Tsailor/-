@@ -4,6 +4,7 @@ export default class FileList{
         this.init();
     }
     init(){
+        let that = this;
         let xhr = new XMLHttpRequest();
         let fileContainer = document.querySelector(".file-list");
         fileContainer.innerHTML = "";
@@ -23,19 +24,18 @@ export default class FileList{
                     str += `<li class= "file-list-item">
                         <div class = "file-list-main">
                             <span class="file-item-name">${v.name}</span>
-                            <span class="file-download" title="下载到本地" onClick = ${this.download}></span>
-                            <span class="file-preview" title="右侧预览" onClick = ${this.preview}></span>
+                            <a class="file-download" title="下载到本地" download=${v.name} href="" ></a>
                         </div>
                         <span class = "file-list-date">${v.date}</span>
                     </li>`
                 })
                 str += `</ul>`;
                 fileContainer.innerHTML = str;
+              
             }
+           
         }
         xhr.send()
     }
-    download(){
-        console.log("down!!")
-    }
+    
 }

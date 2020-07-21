@@ -7,9 +7,8 @@
     <link rel="stylesheet" href="index.css"/>
 </head>
 <body>
-    <header ><h1>文件上传、下载、预览</h1></header>
+    <header ><h1>文件上传、下载</h1></header>
     <div class="wrap">
-        <div class="file">
             <div class="file-container">
                 <div class="file-box" id="file-box">
                     <input class="file-input" type = "file" title=""/>
@@ -20,7 +19,7 @@
                     <div class="file-progress-container">
                         <progress id="uploadprogress" min="0" max="100" value="0">0</progress>
                         <span class = "file-progress-tips">0%</span>
-                        <span class="file-cancel" title="取消上传"></span>
+                        <span class="file-cancel" title="取消上传"></span>  
                         <span class="file-success" ></span>
                     </div>
                 
@@ -31,8 +30,6 @@
                 </div>
             </div>
             <div class="file-list"></div>
-        </div>
-        <div class="preview">preview</div>
     </div>
     <script src="index.js" type="module" ></script>
 </body>
