@@ -10,10 +10,10 @@ function MusicItem(props){
         <li className="MusicItem">
             <input type="checkbox" className="checkbox" checked={content.checked}
                 onChange={handleChoose}/>
-            <span>{content.title}</span>
-            {content.collect ? <a href="">取消收藏</a>
-                : <a  href="">收藏</a>}
-            <a href="">删除</a>
+            <span >{content.title}</span>
+            {content.collect ? <span className="span-content">取消收藏</span>
+                : <span className="span-content">收藏</span>}
+            <span className="span-content">删除</span>
         </li>
     )
 }

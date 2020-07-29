@@ -20,10 +20,11 @@ li {
 .checkbox {
   margin-right: 10px;
 }
-a {
+.span-content {
   color: rgb(59, 59, 233);
   text-decoration: none;
   margin: 0 10px;
+  cursor: pointer;
 }
 .remove {
   margin:0 10px; 

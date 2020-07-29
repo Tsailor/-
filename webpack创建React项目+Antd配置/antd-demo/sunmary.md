@@ -1,7 +1,6 @@
-## 总结 ##  
-各功能具体实现过程见readMe.md  
 
-### 1 webpack搭建react项目 ###  
+
+### webpack搭建react项目 ###  
 以前总是使用脚手架工具直接创建，今天试试webpack手动创建react 项目 
 
 1、 新建src 文件夹存放react代码  ```mkdir src```

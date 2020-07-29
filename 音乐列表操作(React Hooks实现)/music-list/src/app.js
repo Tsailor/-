@@ -1,35 +1,38 @@
-//                ****** 
-//  this is only for testing "useContext";
-//
-
-import React, {useContext} from "react";
-//import Manager from "./manager.js"
-
-const AppContext = React.createContext();
+import React from "react";
+import "./index.css"
+import MusicList from "./musiclist.js";
+import Manager from "./manager.js";
+import { MusicListContext ,data} from "./musicListContext";
+// //创建 Context
 
 function App(){
+
     return(
-        <AppContext.Provider value={{username:"jack"}}>
-        <div>
-          <Manager/>
+        <div className="container">
+           <MusicListContext.Provider value = {data}>
+               <MusicList/>
+               <Manager/>   
+          </MusicListContext.Provider>
         </div>
-    </AppContext.Provider>
+     
+     
     )
 }
-
-const Manager= () => {
-    const { username } = useContext(AppContext)
-  
-    return (
-      <div className="messages">
-        <h1>Messages</h1>
-        <p>1 message for {username}</p>
-        <p className="message">useContext is awesome!</p>
-      </div>
-    )
-}
-
 export default App;
+
+// const Manager= () => {
+//     const { username } = useContext(AppContext)
+  
+//     return (
+//       <div className="messages">
+//         <h1>Messages</h1>
+//         <p>1 message for {username}</p>
+//         <p className="message">useContext is awesome!</p>
+//       </div>
+//     )
+// }
+
+
 
 // import React , {useContext} from "react";
 // import ReactDOM from "react-dom";

@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
-import MusicListContxt from "./musiclistContext.js"
+import { MusicListContext } from "./musicListContext.js"
 import "./index.css"
 function Manager(){
-    const { data } =  useContext(MusicListContxt);
+    const { data } =  useContext(MusicListContext);
 
     const [isCheckedAll, setIsCheckedAll ] = useState(false);
 
@@ -14,10 +14,10 @@ function Manager(){
         <div className="footer">
             <input type="checkbox" name="chooseAll" className="checkbox" 
                 checked={isCheckedAll} onChange={handleChooseAll}/>
-            <span>全选/全不选</span>
-            <a href="" >删除</a>
+            <span >全选/全不选</span>
+            <span className="span-content">删除</span>
             <input type="text" name="input" ></input>
-            <a href="" className="add" >添加</a>
+            <span className="span-content" >添加</span>
         </div>
        
     )
