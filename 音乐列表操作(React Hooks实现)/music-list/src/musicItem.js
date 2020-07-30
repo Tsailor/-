@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext} from "react";
+import  MusicListContext from "./musicListContext.js"
 import "./index.css";
 function MusicItem(props){
     const { content }=props;
 
-    function handleChoose(){
-        
+   const {handleChooseItem } = useContext(MusicListContext);
+    let handleChoose= (e) => {
+       handleChooseItem(content.id,e.target.checked)
     }
     return(
         <li className="MusicItem">
