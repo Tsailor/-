@@ -38,7 +38,7 @@ function App(){
     let [ musicLists, setMusicLIst ]= useState(data);
 
     
-    let hanldeInputItems = (musicData)=>{
+    let hanldeInputItems = (musicData)=>{      //  添加
         console.log(musicData)
         let item = {
             id: musicLists.length===0? 0 : musicLists[musicLists.length-1].id+1,
@@ -48,36 +48,45 @@ function App(){
         }
         setMusicLIst([...musicLists,item]);
     }
-    let handleChooseAllItems = (isCheckedAll)=>{
+    let handleChooseAllItems = (isCheckedAll)=>{      //  全选
          musicLists.map((v)=>
             v.checked = isCheckedAll 
         )
         //console.log(musicLists)
         setMusicLIst([...musicLists])
     }
-    let handleRemoveAllItems =()=>{
-        console.log(11)
-        let res= musicLists.filter((v)=>(
+    let handleRemoveAllItems =()=>{          //  删除所有
+        let res= musicLists.filter((v)=>(    // 拿返回值
             v.checked!==true
         ))
         setMusicLIst([...res])
     }
-    let  handleChooseItem =(id,checked)=>{
-        musicLists.map((v)=>{
-                if(v.id===id ){ v.checked=checked }
-            })
+    let  handleChooseItem =(id)=>{                  // 单选
+        musicLists.map((v)=>
+            v.id === id ? v.checked = !v.checked : null
+        )      
         setMusicLIst([...musicLists])
     }
-        // musicLists.map((v)=>{
-        //     if(v.id===id ){ v.checked=checked }
-        // })
-    
+    let handleRemoveItem = (id) => {            // 单删
+        musicLists.map((v,index) =>
+            v.id === id ? musicLists.splice(index,1) : null
+        )
+        setMusicLIst([...musicLists])
+    }
+    let handleCollectItem = (id) => {        //   收藏
+        musicLists.map((v) =>
+            v.id === id ? v.collect =(!v.collect) : null
+        )
+        setMusicLIst([...musicLists])
+    }
     let contextValue = {    ///   传入子组件的数据
         musicLists,
         hanldeInputItems,           //  添加
         handleChooseAllItems,       // 全选
         handleRemoveAllItems,       //  删除所有
-        handleChooseItem            // 单选
+        handleChooseItem,            // 单选
+        handleRemoveItem,            ///  删除
+        handleCollectItem           //  收藏
     }
     return(
         <div className="container">
@@ -90,54 +99,3 @@ function App(){
 }
 export default App;
 
-// const Manager= () => {
-//     const { username } = useContext(AppContext)
-  
-//     return (
-//       <div className="messages">
-//         <h1>Messages</h1>
-//         <p>1 message for {username}</p>
-//         <p className="message">useContext is awesome!</p>
-//       </div>
-//     )
-// }
-
-
-
-// import React , {useContext} from "react";
-// import ReactDOM from "react-dom";
-
-// //创建 Context
-// const NumberContext = React.createContext();
-// // 它返回一个具有两个值的对象
-// // { Provider, Consumer }
-
-// function App() {
-    
-
-
-//   // 使用 Provider 为所有子孙代提供 value 值 
-//   return (
-//     <NumberContext.Provider value={{username:"jack"}}>
-//       <div>
-//         <Display />
-//       </div>
-//     </NumberContext.Provider>
-//   );
-// }
-
-// function Display() {
-//     const {username} = useContext(NumberContext);
-//     return <div>The answer is {username}.</div>;
-//   }
-
-
-// function Display() {
-//     // 使用 Consumer 从上下文中获取 value
-//     return (
-//       <NumberContext.Consumer>
-//         {value => <div>The answer is {value}.</div>}
-//       </NumberContext.Consumer>
-//     );
-//   }
-// export default App;

@@ -8,25 +8,23 @@ function Manager(){
     const [inputInfo, setInputInfo ] = useState("");
 
   
-    let handleInput = (e) =>{
+    let handleInput = (e) =>{           // 受控组件，输入
         let value = e.target.value;
         setInputInfo(value);
     }
-    let handleAdd = ()=>{
+    let handleAdd = ()=>{                //  添加
         if(inputInfo) { 
             hanldeInputItems(inputInfo);
             setInputInfo("");
         };
         
     }
-    
-    
-    let handleChooseAll = (e) =>{
+    let handleChooseAll = (e) =>{       //  全选
         let checked = e.target.checked;
         setIsCheckedAll(checked)
         handleChooseAllItems(checked)
     }
-    let handleRemoveAll =()=>{
+    let handleRemoveAll =()=>{         //   删除所有
         handleRemoveAllItems();
         setIsCheckedAll(false)
     }
