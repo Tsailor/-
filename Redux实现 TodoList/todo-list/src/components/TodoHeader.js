@@ -15,7 +15,7 @@ function TodoHeader(props){
        
     return(
         <div className="todoHeader">
-            <input className= "todoHeader-input" type = "text" value={inputInfo} onChange={handleInput} />
+            <input className= "todoHeader-input" type = "text" value={inputInfo} onChange={handleInput} onKeyPress={handleAdd} />
             <button type="button"  className= "todoHeader-btn"
                 onClick={handleAdd}
             >提交</button>

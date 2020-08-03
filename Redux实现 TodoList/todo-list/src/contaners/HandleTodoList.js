@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import TodoList from '../components/TodoList.js';
+import { toggleTodo } from '../action/action.js'
 
 const getNewStateByFilter = (state,filter)=>{
     switch(filter){
@@ -11,8 +12,8 @@ const getNewStateByFilter = (state,filter)=>{
 }
 const mapDispatchToProps = (dispatch)=>{
     return {
-        onTodoList: ()=>{
-            dispatch()
+        toggleTodo: (id)=>{
+            dispatch(toggleTodo(id))
         }
     }
 }
