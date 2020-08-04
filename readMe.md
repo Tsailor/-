@@ -55,3 +55,6 @@ React实现、ES6 Class、函数式编程基础
 
 14、文件上传与下载(FormData、Node.js、mysql)  
 功能：上传文件、显示进度、下载
+
+15、使用Redux完成todoList 
+开始学习Redux的应用  

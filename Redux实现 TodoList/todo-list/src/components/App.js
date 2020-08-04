@@ -15,7 +15,6 @@ function App() {       // App 里 创建store，
 
   return (
     <Provider store = { store }>
-      {console.log(store.getState())}
         <HandleTodoHeader/>
         <HandleTodoList/>
         <Footer/>

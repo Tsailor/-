@@ -1,5 +1,6 @@
 import React from 'react';
-import "../index.css"
+import "../index.css";
+import PropTypes from 'prop-types';
 function TodoItem(props){
     const { content, toggleTodo } = props;
     const handletoggleTodo = ()=>{
@@ -12,5 +13,9 @@ function TodoItem(props){
           }}>{ content.text }</li>
         
     )
+}
+TodoItem.propTypes = {
+    content : PropTypes.object,
+    toggleTodo : PropTypes.func
 }
 export default TodoItem;
