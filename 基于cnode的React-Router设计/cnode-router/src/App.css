@@ -1,0 +1,21 @@
+.nav-link {
+  text-decoration: none;
+  color : lightseagreen;
+  margin: 50px;
+}
+
+
+.list-nav {
+  text-decoration: none;
+  color : lightgray;
+  margin: 20px;
+}
+.active {
+   color: red;
+}
+.nav-active {
+  color : green;
+}
+.list-active{
+  color:red;
+}
