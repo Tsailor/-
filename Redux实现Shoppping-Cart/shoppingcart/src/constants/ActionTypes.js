@@ -1,0 +1,1 @@
+export const RECEIVE_PRODUCTS = 'RECEIVE_PRODUCTS'   /// 接受所有初始数据
