@@ -9,7 +9,8 @@ function App() {
          <h2>Shopping Cart Example</h2>
          <hr />
          <ProductContainer />
-         {/* <CartContainer /> */}
+         <hr />
+         <CartContainer />
     </div>
   );
 }
