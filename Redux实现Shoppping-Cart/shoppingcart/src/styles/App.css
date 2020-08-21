@@ -1,6 +1,7 @@
 .app {
   padding: 40px;
   border: 1px solid black;
+  width: 600px;
 }
 .product-panel{
   list-style: none;
