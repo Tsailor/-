@@ -61,3 +61,7 @@ React实现、ES6 Class、函数式编程基础
 
 16、基于cnode的react-router设计  
 模仿cnode社区的路由设计
+
+17、使用Redux完成shop-Cart
+学习如何设置state
+功能：购物，结算
